@@ -16,8 +16,8 @@
 package me.zhengjie.service.impl;
 
 import cn.hutool.core.lang.Dict;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +32,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -85,9 +86,9 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
         sysLog.setParams(getParameter(method, joinPoint.getArgs()));
         // 记录登录用户，隐藏密码信息
         if(signature.getName().equals("login") && StringUtils.isNotEmpty(sysLog.getParams())){
-            JSONObject obj = JSONUtil.parseObj(sysLog.getParams());
-            sysLog.setUsername(obj.getStr("username", ""));
-            sysLog.setParams(JSONUtil.toJsonStr(Dict.create().set("username", sysLog.getUsername())));
+            JSONObject obj = JSON.parseObject(sysLog.getParams());
+            sysLog.setUsername(obj.getString("username"));
+            sysLog.setParams(JSON.toJSONString(Dict.create().set("username", sysLog.getUsername())));
         }
         sysLog.setBrowser(browser);
         // 保存
@@ -101,6 +102,10 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
         List<Object> argList = new ArrayList<>();
         Parameter[] parameters = method.getParameters();
         for (int i = 0; i < parameters.length; i++) {
+            // 过滤掉不能序列化的类型: MultiPartFile
+            if (args[i] instanceof MultipartFile) {
+                continue;
+            }
             //将RequestBody注解修饰的参数作为请求参数
             RequestBody requestBody = parameters[i].getAnnotation(RequestBody.class);
             if (requestBody != null) {
@@ -121,7 +126,7 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
         if (argList.isEmpty()) {
             return "";
         }
-        return argList.size() == 1 ? JSONUtil.toJsonStr(argList.get(0)) : JSONUtil.toJsonStr(argList);
+        return argList.size() == 1 ? JSON.toJSONString(argList.get(0)) : JSON.toJSONString(argList);
     }
 
     @Override

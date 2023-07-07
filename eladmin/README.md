@@ -1,7 +1,7 @@
 <h1 style="text-align: center">ELADMIN 后台管理系统</h1>
 
 #### 项目简介
-一个基于 Spring Boot 2.1.0 、 Mybatis-Plus、 JWT、Spring Security、Redis、Vue的前后端分离的后台管理系统
+一个基于 Spring Boot 2.6.4 、 Mybatis-Plus、 JWT、Spring Security、Redis、Vue的前后端分离的后台管理系统
 
 **开发文档：**  [https://eladmin.vip](https://eladmin.vip)
 
@@ -15,12 +15,6 @@
 |---  |--------------------------------------| --- |
 |  github   | https://github.com/elunez/eladmin-mp |  https://github.com/elunez/eladmin-web-mp   |
 |  码云   | https://gitee.com/elunez/eladmin-mp     |  https://gitee.com/elunez/eladmin-web-mp   |
-
-#### 赞助商 | Sponsor
-
-<a href="https://www.mingdao.com/?s=utm_79&utm_source=eladmin&utm_medium=banner&utm_campaign=github&utm_content=IT赋能业务" target="_blank">
-<img src="https://eladmin.vip/images/banner/index.png" alt="明道云零代码构建平台" style="width: 400px;border-radius: 2px;">
-</a>
 
 #### 主要特性
 - 使用最新技术栈，社区资源丰富。
@@ -60,9 +54,9 @@
 
 - `eladmin-logging` 为系统的日志模块，其他模块如果需要记录日志需要引入该模块
 
-- `eladmin-tools` 为第三方工具模块，包含：图床、邮件、云存储、本地存储、支付宝
+- `eladmin-tools` 为第三方工具模块，包含：邮件、七牛云存储、本地存储、支付宝
 
-- `eladmin-generator` 为系统的代码生成模块，代码生成的模板在 system 模块中
+- `eladmin-generator` 为系统的代码生成模块，支持生成前后端CRUD代码
 
 #### 详细结构
 
@@ -84,10 +78,6 @@
 ```
 
 #### 特别鸣谢
-
-- 感谢 [七牛云](https://portal.qiniu.com/signup?utm_source=kaiyuan&utm_media=ELADMIN) 提供的免费云存储与CDN加速支持
-
-- 感谢 [JetBrains](https://www.jetbrains.com/) 提供的非商业开源软件开发授权
 
 - 感谢 [PanJiaChen](https://github.com/PanJiaChen/vue-element-admin) 大佬提供的前端模板
 
