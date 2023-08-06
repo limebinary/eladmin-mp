@@ -63,9 +63,10 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
     public void update(DictDetail resources) {
         DictDetail dictDetail = getById(resources.getId());
         resources.setId(dictDetail.getId());
+        // 更新数据
         saveOrUpdate(resources);
         // 清理缓存
-        delCaches(resources);
+        delCaches(dictDetail);
     }
 
     @Override
