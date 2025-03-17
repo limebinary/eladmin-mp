@@ -1,5 +1,5 @@
 /*
- *  Copyright 2019-2020 Zheng Jie
+ *  Copyright 2019-2025 Zheng Jie
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import me.zhengjie.annotation.Log;
 import me.zhengjie.modules.system.domain.Role;
 import me.zhengjie.exception.BadRequestException;
 import me.zhengjie.modules.system.service.RoleService;
-import me.zhengjie.modules.system.domain.vo.RoleQueryCriteria;
+import me.zhengjie.modules.system.domain.dto.RoleQueryCriteria;
 import me.zhengjie.utils.PageResult;
 import me.zhengjie.utils.SecurityUtils;
 import org.springframework.http.HttpStatus;
@@ -77,7 +77,8 @@ public class RoleController {
     @ApiOperation("查询角色")
     @GetMapping
     @PreAuthorize("@el.check('roles:list')")
-    public ResponseEntity<PageResult<Role>> queryRole(RoleQueryCriteria criteria, Page<Object> page){
+    public ResponseEntity<PageResult<Role>> queryRole(RoleQueryCriteria criteria){
+        Page<Object> page = new Page<>(criteria.getPage(), criteria.getSize());
         return new ResponseEntity<>(roleService.queryAll(criteria, page),HttpStatus.OK);
     }
 

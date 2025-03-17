@@ -1,5 +1,5 @@
 /*
- *  Copyright 2019-2020 Zheng Jie
+ *  Copyright 2019-2025 Zheng Jie
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package me.zhengjie.service.impl;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qiniu.common.QiniuException;
@@ -30,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 import me.zhengjie.domain.QiniuConfig;
 import me.zhengjie.domain.QiniuContent;
 import me.zhengjie.mapper.QiniuContentMapper;
-import me.zhengjie.domain.vo.QiniuQueryCriteria;
+import me.zhengjie.domain.dto.QiniuQueryCriteria;
 import me.zhengjie.utils.PageResult;
 import me.zhengjie.utils.QiNiuUtil;
 import me.zhengjie.exception.BadRequestException;
@@ -104,7 +104,7 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
             }
             return content;
         } catch (Exception e) {
-           throw new BadRequestException(e.getMessage());
+            throw new BadRequestException(e.getMessage());
         }
     }
 
@@ -133,7 +133,7 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
         try {
             bucketManager.delete(content.getBucket(), content.getKey() + "." + content.getSuffix());
         } catch (QiniuException ex) {
-            ex.printStackTrace();
+            log.error("七牛云删除文件失败", ex);
         } finally {
             removeById(content);
         }

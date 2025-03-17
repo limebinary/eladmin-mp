@@ -1,5 +1,5 @@
 /*
- *  Copyright 2019-2020 Zheng Jie
+ *  Copyright 2019-2025 Zheng Jie
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import me.zhengjie.annotation.Log;
 import me.zhengjie.domain.QiniuConfig;
 import me.zhengjie.domain.QiniuContent;
 import me.zhengjie.service.QiNiuConfigService;
-import me.zhengjie.domain.vo.QiniuQueryCriteria;
+import me.zhengjie.domain.dto.QiniuQueryCriteria;
 import me.zhengjie.service.QiniuContentService;
 import me.zhengjie.utils.PageResult;
 import org.springframework.http.HttpStatus;
@@ -74,7 +74,8 @@ public class QiniuController {
 
     @ApiOperation("查询文件")
     @GetMapping
-    public ResponseEntity<PageResult<QiniuContent>> queryQiNiu(QiniuQueryCriteria criteria, Page<Object> page){
+    public ResponseEntity<PageResult<QiniuContent>> queryQiNiu(QiniuQueryCriteria criteria){
+        Page<Object> page = new Page<>(criteria.getPage(), criteria.getSize());
         return new ResponseEntity<>(qiniuContentService.queryAll(criteria, page),HttpStatus.OK);
     }
 

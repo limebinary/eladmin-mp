@@ -1,7 +1,7 @@
 <h1 style="text-align: center">ELADMIN 后台管理系统</h1>
 
 #### 项目简介
-一个基于 Spring Boot 2.6.4 、 Mybatis-Plus、 JWT、Spring Security、Redis、Vue的前后端分离的后台管理系统
+一个基于 Spring Boot 2.7.18 、 Mybatis-Plus、 JWT、Spring Security、Redis、Vue的前后端分离的后台管理系统
 
 **开发文档：**  [https://eladmin.vip](https://eladmin.vip)
 
@@ -11,18 +11,16 @@
 
 #### 项目源码
 
-|     | 后端源码                                 |   前端源码  |
-|---  |--------------------------------------| --- |
-|  github   | https://github.com/elunez/eladmin-mp |  https://github.com/elunez/eladmin-web-mp   |
-|  码云   | https://gitee.com/elunez/eladmin-mp     |  https://gitee.com/elunez/eladmin-web-mp   |
+| github                                 |   gitee  |
+|--------------------------------------| --- |
+| https://github.com/elunez/eladmin-mp |  https://gitee.com/elunez/eladmin-mp   |
 
 #### VPS推荐
 <a href="https://bwh81.net/aff.php?aff=70876" target="_blank">
-<img src="https://eladmin.vip/images/banner/side.jpeg" style="width: 435px;border-radius: 2px;">
+<img src="https://eladmin.vip/images/banner/side.jpeg" style="width: 435px;border-radius: 2px;" alt="帮瓦工">
 </a>
 
-使用优惠码: `BWHCCNCXVV`，可获得 6.81% 的折扣 [查看介绍](https://bwhstock.in/)
-
+使用优惠码: `BWHNCXNVXV`，可获得 6.81% 的折扣， [查看介绍](https://eladmin.vip/pages/040101/)
 #### 主要特性
 - 使用最新技术栈，社区资源丰富。
 - 高效率开发，代码生成器可一键生成前后端代码
@@ -72,15 +70,30 @@
     - annotation 为系统自定义注解
     - aspect 自定义注解的切面
     - base 提供了 Entity 基类
-    - config 自定义权限实现、redis配置、swagger配置、Rsa配置等
+    - config 项目通用配置
+        - Mybatis-Plus 配置
+        - Web配置跨域与静态资源映射、Swagger配置，文件上传临时路径配置
+        - Redis配置，Redission配置, 异步线程池配置
+        - 权限拦截配置：AuthorityConfig、Druid 删除广告配置
     - exception 项目统一异常的处理
-    - utils 系统通用工具类
+    - utils 系统通用工具类，列举一些常用的工具类
+        - BigDecimaUtils 金额计算工具类
+        - RequestHolder 请求工具类
+        - SecurityUtils 安全工具类
+        - StringUtils 字符串工具类
+        - SpringBeanHolder Spring Bean工具类
+        - RedisUtils Redis工具类
+        - EncryptUtils 加密工具类
+        - FileUtil 文件工具类
 - eladmin-system 系统核心模块（系统启动入口）
-	- config 配置跨域与静态资源，与数据权限
-	    - thread 线程池相关
-	- modules 系统相关模块(登录授权、系统监控、定时任务、运维管理等)
+    - sysrunner 程序启动后处理数据
+	- modules 系统相关模块(登录授权、系统监控、定时任务、系统模块、运维模块)
 - eladmin-logging 系统日志模块
 - eladmin-tools 系统第三方工具模块
+    - email 邮件工具
+    - qiniu 七牛云存储工具
+    - alipay 支付宝支付工具
+    - local-storage 本地存储工具
 - eladmin-generator 系统代码生成模块
 ```
 

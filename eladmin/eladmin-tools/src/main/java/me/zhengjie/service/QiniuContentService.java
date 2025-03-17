@@ -1,5 +1,5 @@
 /*
- *  Copyright 2019-2020 Zheng Jie
+ *  Copyright 2019-2025 Zheng Jie
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import me.zhengjie.domain.QiniuConfig;
 import me.zhengjie.domain.QiniuContent;
-import me.zhengjie.domain.vo.QiniuQueryCriteria;
+import me.zhengjie.domain.dto.QiniuQueryCriteria;
 import me.zhengjie.utils.PageResult;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
